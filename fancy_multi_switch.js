@@ -1,5 +1,5 @@
 // The multi-fancy switch
-// Uses the index of the "values" array to determine which switch it is on
+// Uses a number (0-n) to determine which switch it is on
 // The "values" prop is an array of strings, each is a switch label
 /* 
     Requires Vue and Bootstrap.  Should work without bootstrap, just won't look nice
@@ -35,20 +35,8 @@ Vue.component('fancy-tri-switch', {
     props: ['value', 'values'],
     data: function () {
         return {
-            locked: true,
-            currentValue: 0
+            locked: true
         }
-    },
-    mounted() {
-        this.currentValue = this.value
-    },
-    computed: {
-        valueComputed: function() {
-            return Boolean(this.value)
-        }
-    },
-    methods: {
-        
     },
     template: `
     <div>
@@ -67,3 +55,4 @@ Vue.component('fancy-tri-switch', {
     `
 })
 // END FANCY MULTI-SWITCH
+
