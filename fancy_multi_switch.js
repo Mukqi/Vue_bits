@@ -30,20 +30,31 @@
             .fancy-switch-button
             .fancy-switch-lock-button
 */
-Vue.component('fancy-tri-switch', {
+Vue.component('fancy-multi-switch', {
     delimiters: ['[[', ']]'],
-    props: ['value', 'values'],
+    props: {
+        value: [String, Number],
+        values: Array,
+        lock: {
+            type: Boolean,
+            default: false
+        }
+    },
+    mounted: function() {
+        this.hasLock = !!this.lock
+    },
     data: function () {
         return {
+            hasLock: true,
             locked: true
         }
     },
     template: `
     <div>
         <div class="btn-group fancy-switch-button-group" role="group" aria-label="Fancy Multi-Switch Group">
-            <button v-for="(item, index) in values" class="btn fancy-switch-button" :class="value==index ? 'btn-primary' : 'btn-secondary'" :disabled="locked"  @click="$emit('change', index)"> [[ item ]] </button>
+            <button type="button" v-for="(item, index) in values" class="btn fancy-switch-button" :class="value==index ? 'btn-primary' : 'btn-secondary'" :disabled="locked && hasLock"  @click="$emit('change', index)"> [[ item ]] </button>
         </div>
-        <button :class="locked ? 'btn-primary' : 'btn-outline-secondary'" @click="locked=!locked" class="btn fancy-switch-lock-button">
+        <button type="button" v-if="hasLock" :class="locked ? 'btn-primary' : 'btn-outline-secondary'" @click="locked=!locked" class="btn fancy-switch-lock-button">
             <svg v-if="locked" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
                 <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
             </svg>
@@ -55,4 +66,3 @@ Vue.component('fancy-tri-switch', {
     `
 })
 // END FANCY MULTI-SWITCH
-
