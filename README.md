@@ -2,11 +2,17 @@
 
 A set of vuejs components, bits, and other code I made that can be quite useful.  Each item is self-contained and commented to include usage examples and other explanations if needed
 
+## adjustable_timer.js
+
+A simple timer that has a countdown progress bar and can have its time dynamically changed.  When the timer completes its countdown, it will "emit" a done signal which can be hooked into via VueJS to allow a function of the parent to be run.
+
+![Screenshot of a number box and active button above a counting progress bar.](/img/adjustable_timer.png)
+
 ## circle_clock.js
 
 A count-up pie clock of sorts drawn using SVG paths.  The fill of the pie is based on the input percentage.  The foreground and background colors can be changed.
 
-![Screenshot of a switch with multiple options.](/img/circle_fill.png)
+![Screenshot of a circle clock partially filled in.](/img/circle_fill.png)
 
 ## fancy_multi_switch.js
 
